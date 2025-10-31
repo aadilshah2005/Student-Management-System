@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000', // tumhara backend URL
+        target: 'https://student-management-system-5yu7.onrender.com', // tumhara backend URL
         changeOrigin: true,
         secure: false,
       },
