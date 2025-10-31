@@ -15,10 +15,15 @@ app.use(cookieParser())
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // frontend ka URL
-    credentials: true,               // cookies / token bhejne ke liye
+    origin: [
+      "http://localhost:5173", 
+      "https://student-management-system-1-j40f.onrender.com" // 👈 yahan apna Render frontend URL daal
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
+
 
 connectDB();
 app.use('/api/v1/auth', authRoutes);
@@ -30,4 +35,5 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log("Server is Runing At PORT: ", PORT);
+
 })
