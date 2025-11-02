@@ -3,6 +3,10 @@ import api from "../api/axios";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 function Login() {
@@ -13,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await api.post("/auth/login", user, { withCredentials: true });
-      alert(res.data.message);
+      toast.success(res.data.message);
       console.log("Login Response:", res.data);
 
       const role = res.data.user.role; // ensure backend se role aa raha ho
@@ -30,7 +34,7 @@ function Login() {
     } catch (err) {
       console.error(err.response?.data);
       navigate("/"); 
-      alert(err.response?.data?.message || "Login failed");
+      toast.error(err.response?.data?.message || "Login failed");
     }
   };
   return (
@@ -73,6 +77,15 @@ function Login() {
     </p>
   </div>
 </div>
+   <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        theme="colored"
+      />
     </>
   )
 }

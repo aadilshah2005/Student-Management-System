@@ -3,6 +3,8 @@ import api from '../api/axios'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -14,7 +16,7 @@ function Register() {
     e.preventDefault(); // form ko reload hone se rokta hai
     try {
         const res = await api.post("/auth/register", user);
-        alert(res.data.message);
+        toast.success(res.data.message);
         console.log(res.data);
         navigate("/login");
     } catch (err) {
